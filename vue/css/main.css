@@ -87,3 +87,20 @@ textarea {
     color: #16C0B0;
     text-decoration: underline;
 }
+
+.on-sale {
+    color: red;
+}
+
+a {
+    text-decoration: none;
+    color: #db7093;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: #B784A7;
+    transform: scale(1.1);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
