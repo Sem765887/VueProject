@@ -56,6 +56,10 @@ button {
     font-size: 14px;
 }
 
+#delete-button {
+    background-color: red;
+}
+
 .disabledButton {
     background-color: #d8d8d8;
 }

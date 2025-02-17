@@ -31,12 +31,18 @@
             <p v-else>Out of stock</p>
             <a :href="link"> More products like this</a>
             <div v-for="variant in variants" :key="variant.variantId">
-                <p>{{ variant.variantColor }} Sizes:
+                <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColor }} Sizes:
                 <span v-for="size in sizes">
                 <span> {{ size }}</span>
             </span>
                 </p>
             </div>
+            <div class="cart">
+                <p>Cart({{ cart }})</p>
+                <button id="delete-button" @click="deleteFromCart">Delete from cart</button>
+            </div>
+            <button @click="addToCart">Add to cart</button><br>
+
         </div>
 
     </div>
