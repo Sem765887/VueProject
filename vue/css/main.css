@@ -156,3 +156,7 @@ a:hover {
 .review-form input[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+.review-form input[type="radio"] {
+    width: 15px;
+}
