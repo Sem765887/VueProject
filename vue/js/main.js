@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Vue.component('product-review', {
     template: `
         
@@ -66,6 +67,31 @@ Vue.component('product-review', {
                 if(!this.review) this.errors.push("Review required.")
                 if(!this.rating) this.errors.push("Rating required.")
                 if(!this.recomendation) this.errors.push("Recomendation required.")
+=======
+let app = new Vue ({
+    el: '#app',
+    data: {
+        product: "Socks",
+        description: "A pair of warm, fuzzy socks",
+        image: "./assets/vmSocks-blue-onWhite.jpg",
+        altText: "A pair of socks",
+        link: "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks",
+        inStock: false,
+        inventory: 0,
+        onSale: false,
+        cost: 5,
+        details: ['80% cotton', '20% polyester', 'Gender-neutral'],
+        variants: [
+            {
+                variantId: 2234,
+                variantColor: 'green',
+                variantImage: "./assets/vmSocks-green-onWhite.jpg"
+            },
+            {
+                variantId: 2235,
+                variantColor: 'blue',
+                variantImage: "./assets/vmSocks-blue-onWhite.jpg"
+>>>>>>> f6d7b87c8af0702411d2fd33b4c6aa4250491d0b
             }
         }
 
@@ -157,8 +183,16 @@ Vue.component('product', {
         addToCart() {
             this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
         },
+<<<<<<< HEAD
         deleteProduct() {
             this.$emit('delete-product', this.variants[this.selectedVariant].variantId);
+=======
+        deleteFromCart() {
+            if(this.cart <= 0) {
+                return this.cart;
+            } else
+            this.cart -= 1
+>>>>>>> f6d7b87c8af0702411d2fd33b4c6aa4250491d0b
         },
         updateProduct(index) {
             this.selectedVariant = index;
