@@ -14,14 +14,18 @@
 <body>
 <div id="app">
     <div class="cart">
-        <p>Cart({{ cart }})</p>
+        <p>Cart({{ cart.length }})</p>
         <select name="detete" id="delete-select">
             <option value=id v-for="id in cart">
                 {{ id }}
             </option>
         </select>
     </div>
+
     <product :premium="premium" @add-to-cart="updateCart" @delete-product="deleteFromCart"></product>
+
+
+
 </div>
 </body>
 </html>
