@@ -31,11 +31,9 @@ Vue.component('product', {
              </div>
              <p>Sizes: </p>
              <span v-for="size in sizes"> {{ size }}</span><br>
-             <div class="cart">
-                 <p>Cart({{ cart }})</p>
-                 <button id="delete-button" @click="deleteFromCart">Delete from cart</button>
-             </div>
              <button @click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Add to cart</button><br>
+             <button @click="deleteProduct"">Delete</button>
+             
          </div>
      </div>
 `,
@@ -59,22 +57,18 @@ Vue.component('product', {
                     variantId: 2235,
                     variantColor: 'blue',
                     variantImage: "./assets/vmSocks-blue-onWhite.jpg",
-                    variantQuantity: 0
+                    variantQuantity: 1
                 }
             ],
             sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
-            cart: 0
         }
     },
     methods: {
         addToCart() {
-            this.cart += 1
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
         },
-        deleteFromCart() {
-            if (this.cart <= 0) {
-                return this.cart;
-            } else
-                this.cart -= 1
+        deleteProduct() {
+            this.$emit('delete-product', this.variants[this.selectedVariant].variantId);
         },
         updateProduct(index) {
             this.selectedVariant = index;
@@ -89,6 +83,9 @@ Vue.component('product', {
             return this.variants[this.selectedVariant].variantImage;
         },
         inStock() {
+            return this.variants[this.selectedVariant].variantQuantity
+        },
+        inCatr() {
             return this.variants[this.selectedVariant].variantQuantity
         },
         onSale() {
@@ -121,6 +118,18 @@ Vue.component('product-details', {
 let app = new Vue({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        cart: [],
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id);
+        },
+        deleteFromCart() {
+            if (this.cart.length <= 0) {
+                return this.cart.length;
+            } else
+                this.cart.splice(this.cart.length - 1, 1);
+        },
     }
 })
