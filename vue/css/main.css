@@ -112,7 +112,6 @@ a:hover {
 .outOfStock {
     text-decoration: line-through;
     color: red;
-<<<<<<< HEAD
 }
 
 .review-form {
@@ -160,6 +159,4 @@ a:hover {
 
 .review-form input[type="radio"] {
     width: 15px;
-=======
->>>>>>> f6d7b87c8af0702411d2fd33b4c6aa4250491d0b
 }
