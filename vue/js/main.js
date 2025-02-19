@@ -46,6 +46,7 @@ Vue.component('product-review', {
             name: null,
             review: null,
             rating: null,
+            recomendation: null,
             errors: []
         }
 
@@ -59,11 +60,13 @@ Vue.component('product-review', {
                     rating: this.rating,
                     recomendation: this.recomendation
                 }
-                eventBus.$emit('review-submitted', productReview)
+                this.$emit('review-submitted', productReview)
                 this.name = null
                 this.review = null
                 this.rating = null
                 this.recomendation = null
+                let counter
+                localStorage.setItem('localReview', JSON.stringify(productReview));
             } else {
                 if(!this.name) this.errors.push("Name required.")
                 if(!this.review) this.errors.push("Review required.")
@@ -211,17 +214,15 @@ Vue.component('product-tabs', {
                 >{{ tab }}</span>
             </ul>
         <div v-show="selectedTab === 'Reviews'">
-            <p v-if="!reviews.length">There are no reviews yet.</p>
+            <p v-if="!newReviews">There are no reviews yet.</p>
             <ul>
-                <li v-for="review in reviews">
-                    <p>{{ review.name }}</p>
-                    <p>Rating: {{ review.rating }}</p>
-                    <p>{{ review.review }}</p>
+                <li v-for="review in newReviews">
+                    <p>{{ review }}</p>
                 </li>
             </ul>
         </div>
         <div v-show="selectedTab === 'Make a Review'">
-            <product-review></product-review>
+            <product-review @review-submitted="addReview"></product-review>
         </div>
         <div v-show="selectedTab === 'Shipping'">
             <p>Shipping: {{ shipping }} Free</p>
@@ -232,6 +233,12 @@ Vue.component('product-tabs', {
     </div>
 
 `,
+    computed: {
+      newReviews() {
+          return JSON.parse(localStorage.getItem('localReview'));
+      }
+    },
+
     props: {
         reviews: {
             type: Array,
